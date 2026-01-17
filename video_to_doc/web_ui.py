@@ -153,13 +153,15 @@ def create_ui():
         }
         """,
     ) as demo:
-        gr.Markdown("""
+        gr.Markdown(
+            """
         # 🎥 Video to Documentation Converter
         
         将视频自动转换为结构化技术文档
         
         支持 YouTube、Bilibili 等 1000+ 视频平台
-        """)
+        """
+        )
 
         with gr.Tabs():
             # Main processing tab
@@ -270,7 +272,8 @@ def create_ui():
 
             # Help tab
             with gr.Tab("❓ 使用说明"):
-                gr.Markdown("""
+                gr.Markdown(
+                    """
                 ## 使用指南
                 
                 ### 快速开始
@@ -316,15 +319,18 @@ def create_ui():
                 OPENAI_MODEL=gpt-4-turbo-preview
                 WHISPER_MODE=api
                 ```
-                """)
+                """
+                )
 
-        gr.Markdown("""
+        gr.Markdown(
+            """
         ---
         
         💡 **提示:** 首次使用建议先在"视频信息查询"标签页测试 URL 是否有效
         
         📚 [项目文档](https://github.com/maple-pwn/video-to-doc) | 🐛 [报告问题](https://github.com/maple-pwn/video-to-doc/issues)
-        """)
+        """
+        )
 
     return demo
 

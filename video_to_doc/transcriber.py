@@ -72,12 +72,14 @@ class VideoTranscriber:
 
             return {
                 "text": transcript.text,
-                "language": transcript.language
-                if hasattr(transcript, "language")
-                else "unknown",
-                "duration": transcript.duration
-                if hasattr(transcript, "duration")
-                else 0,
+                "language": (
+                    transcript.language
+                    if hasattr(transcript, "language")
+                    else "unknown"
+                ),
+                "duration": (
+                    transcript.duration if hasattr(transcript, "duration") else 0
+                ),
                 "mode": "api",
             }
         except Exception as e:
