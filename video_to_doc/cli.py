@@ -155,5 +155,114 @@ def version():
     click.echo(f"video-to-doc version {__version__}")
 
 
+@cli.command()
+@click.argument("url_file", type=click.Path(exists=True, path_type=Path))
+@click.option(
+    "--output-dir",
+    type=click.Path(path_type=Path),
+    help="Output directory for generated files",
+    default=None,
+)
+@click.option("--no-frames", is_flag=True, help="Skip keyframe extraction")
+@click.option(
+    "--frame-mode",
+    type=click.Choice(["interval", "smart"]),
+    default="interval",
+    help="Frame extraction mode",
+)
+@click.option(
+    "--whisper-mode",
+    type=click.Choice(["api", "local"]),
+    help="Whisper transcription mode",
+)
+@click.option("--api-key", help="OpenAI API key", default=None)
+@click.option("--model", help="OpenAI model to use", default=None)
+@click.option(
+    "--max-concurrent",
+    type=int,
+    default=3,
+    help="Maximum concurrent video processing",
+)
+@click.option(
+    "--continue-on-error",
+    is_flag=True,
+    default=True,
+    help="Continue processing if one video fails",
+)
+@click.option(
+    "--report",
+    type=click.Path(path_type=Path),
+    default=Path("batch_report.json"),
+    help="Path to save batch processing report",
+)
+def batch(
+    url_file: Path,
+    output_dir: Path,
+    no_frames: bool,
+    frame_mode: str,
+    whisper_mode: str,
+    api_key: str,
+    model: str,
+    max_concurrent: int,
+    continue_on_error: bool,
+    report: Path,
+):
+    """
+    Batch process multiple videos from a URL file.
+
+    URL file should contain one URL per line. Lines starting with # are comments.
+
+    Example:
+
+        video-to-doc batch urls.txt
+
+        video-to-doc batch urls.txt --max-concurrent 5 --report my_report.json
+    """
+    from .batch_processor import BatchProcessor
+
+    click.echo("=" * 60)
+    click.echo("Batch Video Processing")
+    click.echo("=" * 60)
+
+    # Override config if API key provided
+    if api_key:
+        Config.set_openai_key(api_key)
+
+    # Validate configuration
+    try:
+        Config.validate()
+    except ValueError as e:
+        click.echo(f"\n✗ Configuration error: {str(e)}", err=True)
+        click.echo(
+            "\nPlease set OPENAI_API_KEY in .env file or use --api-key option", err=True
+        )
+        sys.exit(1)
+
+    try:
+        processor = BatchProcessor(
+            whisper_mode=whisper_mode,
+            openai_model=model,
+            output_dir=output_dir,
+            max_concurrent=max_concurrent,
+            continue_on_error=continue_on_error,
+        )
+
+        summary = processor.process_from_file(
+            url_file=url_file,
+            extract_frames=not no_frames,
+            frame_mode=frame_mode,
+        )
+
+        # Save report
+        processor.save_report(summary, report)
+
+        click.echo(f"\n✓ Batch processing complete!")
+        click.echo(f"Report saved to: {report}")
+
+    except Exception as e:
+        click.echo(f"\n✗ Error: {str(e)}", err=True)
+        sys.exit(1)
+
+
 if __name__ == "__main__":
     main()
