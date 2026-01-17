@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Web UI service
+  web:
+    build: .
+    container_name: video-to-doc-web
+    ports:
+      - "7860:7860"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4-turbo-preview}
+      - WHISPER_MODE=${WHISPER_MODE:-api}
+      - OUTPUT_DIR=/data/output
+      - TEMP_DIR=/data/temp
+    volumes:
+      - ./output:/data/output
+      - ./temp:/data/temp
+      - ./.env:/app/.env:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - video-to-doc-network
+
+  # CLI service for batch processing
+  cli:
+    build: .
+    container_name: video-to-doc-cli
+    command: tail -f /dev/null  # Keep container running
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4-turbo-preview}
+      - WHISPER_MODE=${WHISPER_MODE:-api}
+      - OUTPUT_DIR=/data/output
+      - TEMP_DIR=/data/temp
+    volumes:
+      - ./output:/data/output
+      - ./temp:/data/temp
+      - ./examples:/app/examples:ro
+      - ./.env:/app/.env:ro
+    networks:
+      - video-to-doc-network
+    profiles:
+      - cli  # Only start when explicitly requested
+
+networks:
+  video-to-doc-network:
+    driver: bridge
+
+volumes:
+  output:
+  temp:
