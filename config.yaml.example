@@ -1,0 +1,92 @@
+# Video to Documentation Configuration File
+# Copy this file to config.yaml and customize as needed
+
+# OpenAI Configuration
+openai:
+  api_key: ""  # Leave empty to use OPENAI_API_KEY from .env
+  model: "gpt-4-turbo-preview"  # Options: gpt-4-turbo-preview, gpt-4, gpt-3.5-turbo
+  temperature: 0.7  # Creativity level (0.0 - 1.0)
+  max_tokens: 4000  # Maximum tokens for documentation generation
+
+# Whisper Configuration
+whisper:
+  mode: "api"  # Options: api (OpenAI API), local (local model)
+  model: "whisper-1"  # For API mode
+  language: "auto"  # auto, en, zh, etc.
+
+# Video Download Configuration
+download:
+  format: "best"  # Video quality
+  max_filesize: 500  # Maximum file size in MB (0 for no limit)
+  subtitles: false  # Download subtitles if available
+  proxy: ""  # HTTP proxy if needed
+
+# Keyframe Extraction Configuration
+keyframes:
+  enabled: true
+  mode: "interval"  # Options: interval, smart (scene detection)
+  interval: 30  # Interval in seconds for interval mode
+  max_frames: 10  # Maximum number of frames to extract
+  quality: 90  # JPEG quality (1-100)
+  min_scene_score: 30  # Minimum scene change score for smart mode
+
+# Output Configuration
+output:
+  dir: "./output"  # Output directory
+  format: "markdown"  # Primary format: markdown, html, pdf
+  include_metadata: true  # Include metadata JSON file
+  include_frames: true  # Save extracted frames
+  cleanup_temp: true  # Clean up temporary files after processing
+
+# Temp Directory
+temp:
+  dir: "./temp"  # Temporary files directory
+  keep_video: false  # Keep downloaded video after processing
+  keep_audio: false  # Keep extracted audio after processing
+
+# Processing Configuration
+processing:
+  timeout: 3600  # Maximum processing time in seconds (0 for no limit)
+  retry_attempts: 3  # Number of retry attempts on failure
+  retry_delay: 5  # Delay between retries in seconds
+
+# Cache Configuration
+cache:
+  enabled: true  # Enable caching
+  dir: "./.cache"  # Cache directory
+  ttl: 86400  # Cache TTL in seconds (24 hours)
+  max_size: 1000  # Maximum cache size in MB
+
+# Logging Configuration
+logging:
+  enabled: true
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "logs/video_to_doc.log"  # Log file path
+  max_size: 10  # Max log file size in MB
+  backup_count: 5  # Number of backup log files
+
+# Documentation Generation Configuration
+documentation:
+  language: "auto"  # Output language: auto, en, zh
+  style: "technical"  # Options: technical, casual, academic
+  include_timestamps: true  # Include timestamps in documentation
+  include_code_blocks: true  # Extract and format code blocks
+  max_length: 10000  # Maximum words for documentation
+  sections:
+    - overview
+    - key_concepts
+    - examples
+    - summary
+
+# Batch Processing Configuration
+batch:
+  max_concurrent: 3  # Maximum concurrent videos to process
+  continue_on_error: true  # Continue processing other videos if one fails
+  report_file: "batch_report.json"  # Batch processing report file
+
+# Advanced Configuration
+advanced:
+  user_agent: ""  # Custom user agent for video download
+  cookies_file: ""  # Path to cookies file for authenticated downloads
+  ffmpeg_path: ""  # Custom ffmpeg path (leave empty for system ffmpeg)
+  custom_prompt: ""  # Custom prompt template for documentation generation
