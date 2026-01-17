@@ -1,7 +1,9 @@
 """Unit tests for configuration module."""
 
-import pytest
 from pathlib import Path
+
+import pytest
+
 from video_to_doc.config import Config
 
 

@@ -1,10 +1,12 @@
 """Extract keyframes from video for documentation illustrations."""
 
-import cv2
 from pathlib import Path
-from typing import List, Optional, Dict, Any
-from PIL import Image
+from typing import Any, Dict, List, Optional
+
+import cv2
 import numpy as np
+from PIL import Image
+
 from .config import Config
 
 

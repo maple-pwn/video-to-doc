@@ -2,11 +2,12 @@
 
 import sys
 from pathlib import Path
+
 import questionary
 from questionary import Style
+
 from .config import Config
 from .pipeline import VideoToDocPipeline
-
 
 # Custom style for better UI
 custom_style = Style(

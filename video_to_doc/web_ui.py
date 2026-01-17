@@ -1,13 +1,14 @@
 """Web UI for video-to-doc using Gradio."""
 
-import gradio as gr
-import sys
 import json
+import sys
 from pathlib import Path
-from typing import Tuple, Optional, List
+from typing import List, Optional, Tuple
+
+import gradio as gr
+
 from .config import Config
 from .pipeline import VideoToDocPipeline
-
 
 # Global pipeline instance
 pipeline = None

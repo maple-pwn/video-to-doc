@@ -1,8 +1,10 @@
 """Command-line interface for video-to-doc."""
 
-import click
 import sys
 from pathlib import Path
+
+import click
+
 from .config import Config
 from .pipeline import VideoToDocPipeline
 

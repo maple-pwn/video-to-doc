@@ -1,13 +1,14 @@
 """Unit tests for exceptions module."""
 
 import pytest
+
 from video_to_doc.exceptions import (
-    VideoToDocException,
-    DownloadError,
-    TranscriptionError,
-    InvalidURLError,
     APIKeyError,
+    DownloadError,
     FFmpegError,
+    InvalidURLError,
+    TranscriptionError,
+    VideoToDocException,
     handle_exception,
 )
 

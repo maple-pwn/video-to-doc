@@ -2,7 +2,7 @@
 
 __version__ = "0.2.0"
 
-from .pipeline import VideoToDocPipeline
 from .config import Config
+from .pipeline import VideoToDocPipeline
 
 __all__ = ["VideoToDocPipeline", "Config", "__version__"]

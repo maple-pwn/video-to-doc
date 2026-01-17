@@ -1,10 +1,12 @@
 """Generate technical documentation from video content using AI."""
 
 import base64
-from pathlib import Path
-from typing import List, Dict, Any, Optional
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 from openai import OpenAI
+
 from .config import Config
 
 

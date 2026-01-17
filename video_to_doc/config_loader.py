@@ -1,8 +1,10 @@
 """Configuration loader for video-to-doc."""
 
-import yaml
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
+
+import yaml
+
 from .config import Config
 
 

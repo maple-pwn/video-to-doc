@@ -1,13 +1,14 @@
 """Main pipeline for video to documentation conversion."""
 
-from pathlib import Path
-from typing import Optional, Dict, Any
 import json
+from pathlib import Path
+from typing import Any, Dict, Optional
+
 from .config import Config
-from .downloader import VideoDownloader
-from .transcriber import VideoTranscriber
-from .frame_extractor import FrameExtractor
 from .doc_generator import DocumentGenerator
+from .downloader import VideoDownloader
+from .frame_extractor import FrameExtractor
+from .transcriber import VideoTranscriber
 
 
 class VideoToDocPipeline:

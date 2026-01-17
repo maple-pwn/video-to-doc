@@ -1,12 +1,13 @@
 """Batch processing for multiple videos."""
 
 import json
-from pathlib import Path
-from typing import List, Dict, Any, Optional
-from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from .pipeline import VideoToDocPipeline
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 from .logger import get_logger
+from .pipeline import VideoToDocPipeline
 
 
 class BatchProcessor:
