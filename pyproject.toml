@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "video-to-doc"
-version = "0.1.0"
-description = "Crawl videos from URLs and generate technical documentation with AI"
+version = "0.2.0"
+description = "Convert videos to technical documentation with AI - CLI, Interactive & Web UI"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
@@ -31,6 +31,8 @@ dependencies = [
     "click>=8.1.0",
     "python-dotenv>=1.0.0",
     "tqdm>=4.66.0",
+    "questionary>=2.0.0",
+    "gradio>=4.0.0",
 ]
 
 [project.optional-dependencies]
@@ -47,6 +49,8 @@ whisper = [
 
 [project.scripts]
 video-to-doc = "video_to_doc.cli:main"
+video-to-doc-interactive = "video_to_doc.interactive_cli:main"
+video-to-doc-web = "video_to_doc.web_ui:main"
 
 [project.urls]
 Homepage = "https://github.com/maple-pwn/video-to-doc"

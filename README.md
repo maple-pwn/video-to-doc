@@ -4,16 +4,19 @@
 
 ## 功能特性
 
-- 支持从各种视频平台下载视频(YouTube、Bilibili等,基于yt-dlp)
-- 使用OpenAI Whisper进行高质量语音转文字
+- 🎥 支持从各种视频平台下载视频(YouTube、Bilibili等,基于yt-dlp)
+- 🎤 使用OpenAI Whisper进行高质量语音转文字
   - 支持云端API模式(精确快速)
   - 支持本地模型模式(免费但需要GPU)
-- 智能提取视频关键帧作为文档配图
+- 🖼️ 智能提取视频关键帧作为文档配图
   - 定时间隔提取模式
   - 场景变化智能检测模式
-- 使用GPT-4自动生成结构化技术文档
-- 输出Markdown格式,易于编辑和发布
-- 命令行工具,使用简单
+- 🤖 使用GPT-4自动生成结构化技术文档
+- 📝 输出Markdown格式,易于编辑和发布
+- 🎯 **三种使用方式**
+  - **命令行模式** - 快速高效，适合脚本自动化
+  - **交互式模式** - 友好问答界面，零学习成本
+  - **Web界面** - 可视化操作，支持多人访问
 
 ## 安装
 
@@ -96,7 +99,41 @@ MAX_KEYFRAMES=10
 
 ## 使用方法
 
-### 基本用法
+### 方式一：交互式模式（推荐新手）
+
+最简单的使用方式，通过友好的问答界面完成所有配置：
+
+```bash
+# 启动交互式模式
+video-to-doc-interactive
+```
+
+交互式模式会引导你完成：
+- 输入视频URL
+- 选择转录模式
+- 配置关键帧提取
+- 设置高级选项（可选）
+
+### 方式二：Web界面
+
+适合团队使用或喜欢可视化操作的用户：
+
+```bash
+# 启动Web界面
+video-to-doc-web
+```
+
+然后在浏览器中访问 `http://localhost:7860`
+
+Web界面功能：
+- 📊 实时处理进度显示
+- 🖼️ 在线预览生成的文档和关键帧
+- 🔍 快速查询视频信息
+- 💡 内置使用说明和示例
+
+### 方式三：命令行模式
+
+适合脚本自动化和批量处理：
 
 ```bash
 # 处理YouTube视频
@@ -166,7 +203,9 @@ output/
 
 ## 编程接口
 
-除了CLI工具,也可以在Python代码中使用:
+除了CLI工具和Web界面,也可以在Python代码中使用:
+
+### Python API
 
 ```python
 from video_to_doc import VideoToDocPipeline
@@ -188,9 +227,59 @@ results = pipeline.process(
 print(f"文档已保存到: {results['documentation_path']}")
 ```
 
+### 自定义Web界面部署
+
+```python
+from video_to_doc.web_ui import create_ui
+
+# 创建自定义Gradio界面
+demo = create_ui()
+
+# 自定义部署参数
+demo.launch(
+    server_name="0.0.0.0",  # 允许外部访问
+    server_port=8080,        # 自定义端口
+    share=True,              # 生成公网链接
+    auth=("username", "password")  # 添加认证
+)
+```
+
 ## 示例
 
-### 处理技术教程视频
+### 示例1: 使用交互式模式（最简单）
+
+```bash
+$ video-to-doc-interactive
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║                                                            ║
+    ║        🎥  Video to Documentation Converter  📝           ║
+    ║                                                            ║
+    ║        将视频自动转换为技术文档                              ║
+    ║                                                            ║
+    ╚════════════════════════════════════════════════════════════╝
+
+? 请输入视频 URL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+? 自定义输出文件名: python_tutorial
+? 选择语音转录模式: ☁️  API 模式 (推荐)
+? 是否提取视频关键帧？ Yes
+? 选择关键帧提取模式: 🎯 智能模式
+? 处理完成后是否清理临时文件？ Yes
+
+✅ 处理完成！
+```
+
+### 示例2: 使用Web界面
+
+```bash
+$ video-to-doc-web
+
+Running on local URL:  http://127.0.0.1:7860
+```
+
+在浏览器中打开，填写表单，点击"开始处理"即可。
+
+### 示例3: 使用命令行批量处理
 
 ```bash
 video-to-doc https://www.youtube.com/watch?v=dQw4w9WgXcQ \
@@ -299,6 +388,13 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 项目链接: https://github.com/maple-pwn/video-to-doc
 
 ## 更新日志
+
+### v0.2.0 (2024-01-17)
+
+- ✨ 新增交互式CLI模式 - 问答式界面，零学习成本
+- ✨ 新增Gradio Web界面 - 可视化操作，支持团队使用
+- 🎨 优化用户体验 - 提供三种不同使用方式
+- 📝 完善文档说明 - 添加详细的使用示例
 
 ### v0.1.0 (2024-01-15)
 
