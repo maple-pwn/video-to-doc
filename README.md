@@ -39,7 +39,7 @@ sudo apt install ffmpeg
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/video-to-doc.git
+git clone https://github.com/maple-pwn/video-to-doc.git
 cd video-to-doc
 
 # 创建虚拟环境(推荐)
@@ -296,11 +296,7 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 - [OpenCV](https://opencv.org/) - 视频处理库
 - [OpenAI GPT-4](https://openai.com/) - 文档生成AI
 
-## 作者
-
-Your Name - your.email@example.com
-
-项目链接: https://github.com/yourusername/video-to-doc
+项目链接: https://github.com/maple-pwn/video-to-doc
 
 ## 更新日志
 
