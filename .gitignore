@@ -38,6 +38,7 @@ ENV/
 # Output and temp directories
 output/
 temp/
+logs/
 *.mp4
 *.mp3
 *.wav
