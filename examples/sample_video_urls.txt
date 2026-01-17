@@ -1,0 +1,13 @@
+# 示例视频 URL 列表
+# 格式：每行一个 URL，支持注释（以 # 开头）
+# 可用于批量处理功能
+
+# Python 教程示例
+https://www.youtube.com/watch?v=example1
+https://www.youtube.com/watch?v=example2
+
+# 技术讲座示例
+https://www.bilibili.com/video/BVexample1
+https://www.bilibili.com/video/BVexample2
+
+# 注意：这些是示例 URL，实际使用时请替换为真实的视频链接
