@@ -1,6 +1,5 @@
 """Video downloader module using yt-dlp."""
 
-import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 

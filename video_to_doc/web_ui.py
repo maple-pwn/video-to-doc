@@ -1,8 +1,5 @@
 """Web UI for video-to-doc using Gradio."""
 
-import json
-import sys
-from pathlib import Path
 from typing import List, Optional, Tuple
 
 import gradio as gr
@@ -82,7 +79,6 @@ def process_video_ui(
             documentation = f.read()
 
         # Format metadata for display
-        metadata = results.get("metadata", {})
         video_info = results.get("video_info", {})
 
         metadata_display = f"""

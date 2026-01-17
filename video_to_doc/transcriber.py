@@ -1,6 +1,5 @@
 """Video transcription module supporting both OpenAI Whisper API and local models."""
 
-import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 

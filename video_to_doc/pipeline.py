@@ -55,7 +55,7 @@ class VideoToDocPipeline:
             Dict containing all processing results and file paths
         """
         print(f"\n{'=' * 60}")
-        print(f"Starting video to documentation pipeline")
+        print("Starting video to documentation pipeline")
         print(f"{'=' * 60}\n")
 
         results = {
@@ -128,7 +128,7 @@ class VideoToDocPipeline:
             results["success"] = True
 
             print(f"\n{'=' * 60}")
-            print(f"✓ Pipeline completed successfully!")
+            print("✓ Pipeline completed successfully!")
             print(f"{'=' * 60}\n")
 
             return results

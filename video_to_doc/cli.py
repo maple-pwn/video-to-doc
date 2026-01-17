@@ -258,7 +258,7 @@ def batch(
         # Save report
         processor.save_report(summary, report)
 
-        click.echo(f"\n✓ Batch processing complete!")
+        click.echo("\n✓ Batch processing complete!")
         click.echo(f"Report saved to: {report}")
 
     except Exception as e:

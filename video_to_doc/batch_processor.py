@@ -134,7 +134,7 @@ class BatchProcessor:
             "errors": self.errors,
         }
 
-        self.logger.info(f"\nBatch Processing Summary:")
+        self.logger.info("\nBatch Processing Summary:")
         self.logger.info(f"  Total: {summary['total']}")
         self.logger.success(f"  Success: {summary['success']}")
         self.logger.failure(f"  Failed: {summary['failed']}")

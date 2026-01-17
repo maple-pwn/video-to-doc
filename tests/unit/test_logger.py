@@ -1,9 +1,5 @@
 """Unit tests for logging module."""
 
-from pathlib import Path
-
-import pytest
-
 from video_to_doc.logger import Logger, get_logger, setup_logging
 
 

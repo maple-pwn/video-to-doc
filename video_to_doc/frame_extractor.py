@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional
 
 import cv2
 import numpy as np
-from PIL import Image
 
 from .config import Config
 

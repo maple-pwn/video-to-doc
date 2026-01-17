@@ -1,7 +1,5 @@
 """Unit tests for exceptions module."""
 
-import pytest
-
 from video_to_doc.exceptions import (
     APIKeyError,
     DownloadError,
