@@ -28,7 +28,7 @@ class TestConfig:
     def test_validate_without_key(self, monkeypatch):
         """Test validation without API key."""
         monkeypatch.delenv("OPENAI_API_KEY", raising=False)
-        Config.OPENAI_API_KEY = None
+        Config.OPENAI_API_KEY = ""
 
         with pytest.raises(ValueError, match="OPENAI_API_KEY is required"):
             Config.validate()
@@ -61,15 +61,13 @@ class TestConfigLoader:
         assert result["b"]["d"] == 3
         assert result["e"] == 4
 
-    def test_get_config_with_dot_notation(self, sample_config):
+    def test_get_config_with_dot_notation(self, sample_config, monkeypatch):
         """Test getting config value with dot notation."""
-        from video_to_doc.config_loader import ConfigLoader, _global_config
         import video_to_doc.config_loader as config_module
-
-        # Set global config
-        config_module._global_config = sample_config
-
         from video_to_doc.config_loader import get_config
+
+        # Set global config using monkeypatch
+        monkeypatch.setattr(config_module, "_global_config", sample_config)
 
         assert get_config("openai.model") == "gpt-4-turbo-preview"
         assert get_config("whisper.mode") == "api"
