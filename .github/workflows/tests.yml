@@ -90,7 +90,7 @@ jobs:
       run: black --check video_to_doc/ tests/
     
     - name: Check import sorting with isort
-      run: isort --check-only video_to_doc/ tests/
+      run: isort --check-only video_to_doc/ tests/ --profile black
     
     - name: Lint with ruff
       run: ruff check video_to_doc/ tests/
